@@ -1,5 +1,5 @@
 # Python Hand Detection
-##Detecting hands in python 3 using openCV
+## Detecting hands in python 3 using openCV
 
 You will need to install two python libraries for this code to work, opencv-python and imutils
 
