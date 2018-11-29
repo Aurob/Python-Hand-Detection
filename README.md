@@ -8,5 +8,5 @@ You can install them using pip:
 pip install opencv-python
 
 pip install imutils
-``
+```
 The haar-cascade used in this project was created by github user [Aravindlivewire](https://github.com/Aravindlivewire/Opencv/blob/master/haarcascade/aGest.xml)
