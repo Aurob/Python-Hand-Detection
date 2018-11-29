@@ -27,9 +27,15 @@ def getAngle(x,y,x2,y2):
     ydistance = math.hypot(a1[0]-a2[0],a1[1]-a2[1]) #distance between the hand center and the right angle 
     angle = math.degrees(math.asin(ydistance/hypot)) #angle from the hand center to the frame center
 
+    #Draws a right triangle on the frame
     #points = np.array([a1,a2,a3])
-    #cv2.polylines(img,np.int32([points]),1,(0,0,255)) #Draws a right triangle on the frame
+    #cv2.polylines(img,np.int32([points]),1,(0,0,255))
 
+
+    #Angles currently used are for dispalying the car image with forward/backward movement
+    #Use the uncommented lines in the bottom half section for full 360 degree output
+
+    #Top half of plane
     if y2 < y/2:
         direction1 = "forward"
         if x2 > x/2: #Quadrant 1
@@ -39,18 +45,19 @@ def getAngle(x,y,x2,y2):
             direction2 = "left"
             angle = 180 - angle
 
+    #Bottom half of plane
     elif y2 > y/2:
         direction1 = "backward"
         if x2 < x/2: #Quadrant 3
             direction2 = "left"
-            #angle = 180 + angle
+            #angle = 180 + angle #Use for an exact degree, will be between 180 and 270
             angle = angle
         elif x2 > x/2: #Quadrant 4
             direction2 = "right"
-            #angle = 360 - angle
+            #angle = 360 - angle #Use for an exact degree, will be between 270 and 360
             angle = 180 - angle
-            
-    return -int(angle), direction1, direction2
+    
+    return int(angle), direction1, direction2
 
 forwardcar = cv2.imread('./forwardcar.png')
 backwardcar = cv2.imread('./backwardcar.png')
@@ -67,35 +74,36 @@ while camera.isOpened():
     ret, frame = camera.read()
     y,x,_ = frame.shape
     
-    
     frame = cv2.bilateralFilter(frame, 9, 0, 0)  #Smoothing filter
     img = cv2.flip(frame, 1) #Flips the frame horizontally
     hands = detect_hands(img) #Array of coordiantes where hands are located
     
     try:
-        #Boundries drawn
+        #Grid pattern drawn
         cv2.line(img,(int(x/2),0),(int(x/2),y),(0,0,0),1)
         cv2.line(img,(0,int(y/2)),(x,int(y/2)),(0,0,0),1)
-        cv2.imshow('frame',img) #Show boundries
+        cv2.imshow('frame',img) #Show grid and frame
 
         if hands.any():
+
             for (a,b,w,h) in hands:
-                
                 x2, y2 = (int(a+(w/2)),int(b+(h/2))) #Center coords of the hand
                 angle, direction1, direction2 = getAngle(x,y,x2,y2) #Returns angle from center of frame to center of hand
+
+                #Set the car image to use, based on the position of the hand
                 if direction1 == 'forward':
                     car = forwardcar
                 else:
                     car = backwardcar
+
                 car_img = imutils.rotate_bound(car,angle) #Adjust car image to appropriate angle 
                 cv2.line(img,(int(x/2),int(y/2)),(x2,y2),(0,255,0),3) #Line to center of hand from center of frame
+                
                 print('\n\nMoving '+direction1+' and '+direction2)
                 print('Tire angle is '+ str(angle+90))
+
             cv2.imshow('car',car_img) #Show rotated car
             cv2.imshow('frame',img) #Show line to center of hand
-
-            #socket.send('{forwardbackward:'+direction1+',leftright:'+direction2+'}')
-            #socket.send('{forwardbackward:'+direction1+',angle:'+angle+'}')
 
             
     except:
