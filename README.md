@@ -1,13 +1,13 @@
 # Python Hand Detection
-## Detecting hands in python 3 using openCV
 
 This project uses Haar Feature-based Cascade Classifiers to detect hands in an image (or a frame from webcam).
 
 For more information regarding using python for Haar Feature object detection see this link. (The detection part of this project was taken from this link and altered to fit the project):
-(Face Detection using Haar Cascades)[https://docs.opencv.org/3.4/d7/d8b/tutorial_py_face_detection.html]
+[Face Detection using Haar Cascades](https://docs.opencv.org/3.4/d7/d8b/tutorial_py_face_detection.html)
 
+## Detecting hands in python 3 using openCV
 
-You will need to install two python libraries for this code to work, opencv-python and imutils
+You will need to install two python libraries for this project to work, opencv-python and imutils
 
 You can install them using pip:
 ```
