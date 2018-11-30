@@ -96,12 +96,11 @@ while camera.isOpened():
                 else:
                     car = backwardcar
 
-                car_img = imutils.rotate_bound(car,angle) #Adjust car image to appropriate angle 
+                car_img = imutils.rotate_bound(car,-angle) #Adjust car image to appropriate angle 
                 cv2.line(img,(int(x/2),int(y/2)),(x2,y2),(0,255,0),3) #Line to center of hand from center of frame
                 
                 print('\n\nMoving '+direction1+' and '+direction2)
-                print('Tire angle is '+ str(angle+90))
-
+                
             cv2.imshow('car',car_img) #Show rotated car
             cv2.imshow('frame',img) #Show line to center of hand
 
