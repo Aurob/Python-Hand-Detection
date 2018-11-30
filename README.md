@@ -7,6 +7,8 @@ For more information regarding using python for Haar Feature object detection se
 
 ## Detecting hands in python 3 using openCV
 
+This projectwas written and tested in python 3.4+. Both required libraries are availble in python 2.7, but no testing was done in that version, so further maintenence will be required on your end to make it work in python 2.7.
+
 You will need to install two python libraries for this project to work, opencv-python and imutils
 
 You can install them using pip:
@@ -18,8 +20,10 @@ pip install imutils
 If any issues occur on installation, or for further information regarding these libaries, reference the documentation for each library:
 
 [opencv-python](https://pypi.org/project/opencv-python/)
+
 [imutils](https://github.com/jrosebr1/imutils)
 
-
+If you need help using or installing pip see this link for help:
+[Install pip for python](https://www.makeuseof.com/tag/install-pip-for-python/)
 
 The haar-cascade used in this project was created by github user [Aravindlivewire](https://github.com/Aravindlivewire/Opencv/blob/master/haarcascade/aGest.xml)
