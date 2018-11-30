@@ -8,10 +8,15 @@ For more information regarding using python for Haar Feature object detection se
 
 The haar-cascade used in this project was trained by github user [Aravindlivewire](https://github.com/Aravindlivewire/Opencv/blob/master/haarcascade/aGest.xml)
 
+Note that this method of detecting hands in an image is nowhere near perfect. The accuracy of detection is highly dependent on the environment i.e. lighting, background movement, camera quality, etc. As well as the angle of the hand (detection works only when the palm is directly facing the camera).
+
+The best environment is one with adequate lighting, but not too much, and a flat, unchanging background.
+Test the program in a variety of environments to determine which works best for you.
+
 
 ## Detecting hands in python 3 using openCV
 
-This projectwas written and tested in python 3.4+. 
+This project was written and tested in python 3.4+. 
 Both required libraries are availble in python 2.7, but no testing was done in that version, so further maintenence will be required on your end to make it work in python 2.7.
 
 You will need to install two python libraries for this project to work, opencv-python and imutils
